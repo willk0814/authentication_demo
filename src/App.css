@@ -38,9 +38,9 @@
 }
 
 .bodyButton_selected {
+  font-size: 1.25rem;
   margin-inline: 5px;
   border-radius: 10px;
-  font-size: 1rem;
   color: beige;
   background-color: black;
   border: 1px black solid;
@@ -48,9 +48,9 @@
 }
 
 .bodyButton {
+  font-size: 1.25rem;
   margin-inline: 5px;
   border-radius: 10px;
-  font-size: 1rem;
   background-color: beige;
   color: black;
   border: 1px black solid;
@@ -87,16 +87,20 @@
 }
 
 .label {
+  font-size: 1.25rem;
   padding-right: 10px;
+  font-weight: 300;
 }
 
 .input {
+  font-size: 1.25rem;
   background-color: lightgrey;
   border: 1px black solid;
   border-radius: 6px;
 }
 
 .submitButton {
+  font-size: 1.25rem;
   margin-block: 5px;
   margin-inline: 20%;
   border-radius: 10px;
