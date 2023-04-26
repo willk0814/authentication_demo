@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PassProgressBar from "./PassProgressBar";
+import { register } from "../services/service";
 
-export default function Register({ handleLogin }) {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passStrength, setPassStrength] = useState();
@@ -19,13 +20,13 @@ export default function Register({ handleLogin }) {
     setConfirmPassword(e.target.value);
   };
 
-  const handleRegister = () => {
+  const handleRegisterClick = () => {
     let valid_acc = true;
     if (password !== confirmPassword) valid_acc = false;
     if (passStrength < 8) valid_acc = false;
     if (username.length < 3) valid_acc = false;
 
-    if (valid_acc) handleLogin(username, password);
+    if (valid_acc) register(username, password);
     else console.log("not all reqs were met");
   };
 
@@ -58,7 +59,7 @@ export default function Register({ handleLogin }) {
   }, [password]);
   return (
     <div className="registerRowContainer">
-      <form className="formAlignment">
+      <div className="formAlignment">
         <div className="inputContainer">
           <label className="label">Username</label>
           <input
@@ -86,10 +87,10 @@ export default function Register({ handleLogin }) {
           />
         </div>
 
-        <button className="submitButton" onClick={handleRegister}>
+        <button className="submitButton" onClick={handleRegisterClick}>
           Register
         </button>
-      </form>
+      </div>
 
       <div className="divider"></div>
 
