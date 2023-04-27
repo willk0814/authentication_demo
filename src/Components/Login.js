@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { login } from "../services/service";
 
 export default function Login({ handleLogin }) {
   const [username, setUsername] = useState("");
@@ -12,9 +13,18 @@ export default function Login({ handleLogin }) {
     setPassword(e.target.value);
   };
 
+  const handleLoginClick = () => {
+    let authStatus = login(username, password);
+    if (!authStatus) {
+      console.log("Incorrect username or pass");
+      return;
+    }
+    handleLogin(authStatus, username, password);
+  };
+
   return (
     <div>
-      <form className="formAlignment">
+      <div className="formAlignment">
         <div className="inputContainer">
           <label className="label">Username</label>
           <input
@@ -32,13 +42,10 @@ export default function Login({ handleLogin }) {
             onChange={handlePasswordChange}
           />
         </div>
-        <button
-          className="submitButton"
-          onClick={() => handleLogin(username, password)}
-        >
+        <button className="submitButton" onClick={handleLoginClick}>
           Log In
         </button>
-      </form>
+      </div>
     </div>
   );
 }

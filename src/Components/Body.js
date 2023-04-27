@@ -1,33 +1,24 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import Login from "./Login";
 import Register from "./Register";
 import HomeScreen from "./HomeScreen";
-import { register } from "../services/service";
 
 export default function Body() {
   const [showLogin, setShowLogin] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
 
   const toggleShowLogin = (value) => {
     setShowLogin(value);
   };
 
   const handleLogout = () => {
-    // setUsername("");
-    // setPassword("");
     setLoggedIn(false);
   };
 
-  const handleLogin = (username, password) => {
-    // setUsername(username);
-    // setPassword(password);
-    console.log(`logging in with user:${username} and pass:${password}`);
-    setLoggedIn(true);
+  const handleLogin = (authStatus, username, password) => {
+    setLoggedIn(authStatus);
+    console.log(`Logged in with user: ${username} and pass: ${password}`);
   };
 
   return (
