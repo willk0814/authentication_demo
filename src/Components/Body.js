@@ -18,7 +18,6 @@ export default function Body() {
 
   const handleLogin = (authStatus, username, password) => {
     setLoggedIn(authStatus);
-    console.log(`Logged in with user: ${username} and pass: ${password}`);
   };
 
   return (

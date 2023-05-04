@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export async function register(username, password) {
-  console.log("registering w/ user, pass: ", username, password);
   const data = {
     user: username,
     pass: password,
@@ -11,6 +10,7 @@ export async function register(username, password) {
       "http://localhost:3000/api/register",
       data
     );
+
     console.log(response.data);
   } catch (error) {
     console.log(error);
@@ -18,7 +18,6 @@ export async function register(username, password) {
 }
 
 export async function login(username, password) {
-  console.log("logging in w/ user, pass: ", username, password);
   const data = {
     user: username,
     pass: password,

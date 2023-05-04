@@ -3,7 +3,7 @@ import React from "react";
 export default function Header() {
   return (
     <div className="headerContainer">
-      <h1 className="titleText">Welcome to my authentication demo</h1>
+      <h1 className="titleText">Welcome to my registration demo</h1>
       <p className="headerText">
         This is a project I have done to develop and display the following
         skills

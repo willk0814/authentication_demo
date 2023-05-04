@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Model = require("../models/user_model");
+const jwt = require("jsonwebtoken");
 module.exports = router; // export the router to be used elsewhere
 
 // POST Method
@@ -14,7 +15,12 @@ router.post("/register", async (req, res) => {
 
   try {
     const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
+
+    // generate a jwt to send to the front end
+    const token = jwt.sign({ user: dataToSave.user }, "secret", {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ user: dataToSave.user, token });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -27,7 +33,9 @@ router.post("/login", async (req, res) => {
   try {
     const data = await Model.findOne({ user, pass });
     if (data) {
-      res.status(200).json({ message: "login successful", authStatus: true });
+      // generate a jwt to send to front end
+      const token = jwt.sign({ user }, "secret", { expiresIn: "1h" });
+      res.status(200).json({ user, token, authStatus: true });
     } else {
       res
         .status(401)
