@@ -55,3 +55,15 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+// ADMIN APIs
+// View all users
+router.get("/users", async (req, res) => {
+  console.log("get all users request recieved");
+  try {
+    const users = await Model.find({});
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
