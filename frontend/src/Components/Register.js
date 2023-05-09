@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PassProgressBar from "./PassProgressBar";
-import { register } from "../services/service";
 
-export default function Register() {
+export default function Register({ handleRegister }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passStrength, setPassStrength] = useState();
@@ -26,7 +25,7 @@ export default function Register() {
     if (passStrength < 8) valid_acc = false;
     if (username.length < 3) valid_acc = false;
 
-    if (valid_acc) register(username, password);
+    if (valid_acc) handleRegister(username, password, false);
     else console.log("not all reqs were met");
   };
 

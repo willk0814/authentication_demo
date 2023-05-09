@@ -1,24 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Login from "./Login";
 import Register from "./Register";
 import HomeScreen from "./HomeScreen";
+import { register, login } from "../services/service";
 
 export default function Body() {
   const [showLogin, setShowLogin] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedInUser, setLoggedInUser] = useState({ user: "", auth: false });
 
   const toggleShowLogin = (value) => {
     setShowLogin(value);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("key");
     setLoggedIn(false);
   };
 
-  const handleLogin = (authStatus, username, password) => {
+  const handleRegsiter = (username, password, auth) => {
+    register(username, password, auth);
+    setLoggedInUser({ user: username, auth: auth });
+    setLoggedIn(true);
+  };
+
+  const handleLogin = (authStatus, username, auth) => {
+    setLoggedInUser({ user: username, auth: auth });
     setLoggedIn(authStatus);
   };
+
+  // useEffect(() => {
+  //   const key = localStorage.getItem("key");
+  //   console.log(key);
+  //   if (!key) {
+  //     setLoggedIn(false);
+  //     setLoggedInUser({ user: "", auth: false });
+  //   } else {
+  //     setLoggedIn(true);
+  //   }
+  // }, []);
 
   return (
     <div className="bodyContainer">
@@ -41,10 +62,14 @@ export default function Body() {
 
       {!loggedIn ? (
         <div className="formContainer">
-          {showLogin ? <Login handleLogin={handleLogin} /> : <Register />}
+          {showLogin ? (
+            <Login handleLogin={handleLogin} />
+          ) : (
+            <Register handleRegister={handleRegsiter} />
+          )}
         </div>
       ) : (
-        <HomeScreen handleLogout={handleLogout} />
+        <HomeScreen user={loggedInUser} handleLogout={handleLogout} />
       )}
     </div>
   );

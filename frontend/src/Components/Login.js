@@ -15,11 +15,12 @@ export default function Login({ handleLogin }) {
 
   const handleLoginClick = () => {
     let authStatus = login(username, password);
+    console.log(authStatus);
     if (!authStatus) {
       console.log("Incorrect username or pass");
       return;
     }
-    handleLogin(authStatus, username, password);
+    handleLogin(username, password);
   };
 
   return (
