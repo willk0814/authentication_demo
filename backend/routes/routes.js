@@ -12,12 +12,13 @@ router.post("/register", async (req, res) => {
   const data = new Model({
     user: req.body.user,
     pass: hashedPaswword,
-    age: req.body.age,
+    auth: req.body.auth,
   });
   console.log(
     "Registering new user with user, hashedPass: ",
     data.user,
-    data.pass
+    data.pass,
+    data.auth
   );
   try {
     const dataToSave = await data.save();
@@ -42,7 +43,7 @@ router.post("/login", async (req, res) => {
       const isMatch = await bcrypt.compare(pass, data.pass);
       if (isMatch) {
         // generate a jwt to send to front end
-        const token = jwt.sign({ user }, "secret", { expiresIn: "1h" });
+        const token = jwt.sign({ user, pass }, "secret", { expiresIn: "1h" });
         res.status(200).json({ user, token, authStatus: true });
       }
     } else {

@@ -10,12 +10,12 @@ const dataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    age: {
-      type: Number,
-      required: false,
+    auth: {
+      type: Boolean,
+      required: true,
     },
   },
-  { collection: "users" }
+  { collection: "users_2" }
 );
 
 module.exports = mongoose.model("Users", dataSchema);
