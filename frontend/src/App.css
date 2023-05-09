@@ -171,3 +171,16 @@
   justify-content: center;
   margin-block-start: 10px;
 }
+
+.userText {
+  /* margin-inline: 20px; */
+}
+
+.userContentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 5px;
+  padding-inline: 10px;
+}
