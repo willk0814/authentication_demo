@@ -8,7 +8,7 @@ export default function HomeScreen({ user, handleLogout }) {
 
   async function handleGetUsers() {
     const userList = await getAllUsers();
-    // console.log(userList);
+    console.log(userList);
     setUsers(userList);
   }
 
@@ -36,7 +36,7 @@ export default function HomeScreen({ user, handleLogout }) {
         <UserBar
           key={index}
           user={user.user}
-          auth={user.auth}
+          status={user.auth}
           id={user._id}
           removeUser={removeUser}
         />
