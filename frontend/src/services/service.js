@@ -44,3 +44,29 @@ export async function getAllUsers() {
     console.log(error);
   }
 }
+
+export async function deleteUser(userID) {
+  try {
+    const response = await axios.delete(
+      `http://localhost:3000/api/users/${userID}/`
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateUserAuth(userID, authStatus) {
+  const data = {
+    auth: authStatus,
+  };
+  try {
+    const response = await axios.put(
+      `http://localhost:3000/api/users/${userID}/`,
+      data
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+}

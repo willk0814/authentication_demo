@@ -67,3 +67,29 @@ router.get("/users", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+// Delete user
+router.delete("/users/:id", async (req, res) => {
+  console.log("Delete user request recieved");
+  try {
+    const user = await Model.findByIdAndDelete(req.params.id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Update user auth settings
+router.put("/users/:id", async (req, res) => {
+  console.log("update user auth request recieved");
+  try {
+    const user = await Model.findByIdAndUpdate(
+      req.params.id,
+      { $set: { auth: req.body.auth } },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+});

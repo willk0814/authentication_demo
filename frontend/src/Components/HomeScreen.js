@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { getAllUsers } from "../services/service";
+import { getAllUsers, deleteUser } from "../services/service";
 import UserBar from "./UserBar";
 
 export default function HomeScreen({ user, handleLogout }) {
@@ -8,9 +8,14 @@ export default function HomeScreen({ user, handleLogout }) {
 
   async function handleGetUsers() {
     const userList = await getAllUsers();
-    console.log(userList);
+    // console.log(userList);
     setUsers(userList);
   }
+
+  const removeUser = (id) => {
+    console.log(`removing user id with: ${id}`);
+    deleteUser(id);
+  };
 
   return (
     <div className="homeContainer">
@@ -28,7 +33,13 @@ export default function HomeScreen({ user, handleLogout }) {
       </button>
 
       {users.map((user, index) => (
-        <UserBar key={index} user={user.user} auth={user.auth} />
+        <UserBar
+          key={index}
+          user={user.user}
+          auth={user.auth}
+          id={user._id}
+          removeUser={removeUser}
+        />
       ))}
     </div>
   );
