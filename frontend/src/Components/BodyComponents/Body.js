@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Login from "./Login";
-import Register from "./Register";
-import HomeScreen from "./HomeScreen";
-import { register, login } from "../services/service";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import HomeScreen from "./LoggedInHome/HomeScreen";
+import { register, login } from "../../services/service";
 
 export default function Body() {
   const [showLogin, setShowLogin] = useState(true);

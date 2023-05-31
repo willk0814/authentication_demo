@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PassProgressBar from "./PassProgressBar";
 
+import "./RegisterStyles.css";
+
 export default function Register({ handleRegister }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

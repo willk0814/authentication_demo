@@ -1,0 +1,25 @@
+/* Logged In Home Screen Container */
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block-start: 10px;
+}
+
+/* Container to hold users */
+.userMapContainer {
+    display: flex;
+    flex-direction: column;
+    margin-block: 10px;
+}
+
+/* Individual user map */
+.userContentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 5px;
+    padding-inline: 10px;
+  }

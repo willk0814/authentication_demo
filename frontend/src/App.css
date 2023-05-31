@@ -1,3 +1,4 @@
+/* App Container */
 .appContainer {
   display: flex;
   flex-direction: column;
@@ -35,7 +36,7 @@
 .bodyContainer {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 90vw;
 }
 
 .bodyButton_selected {
@@ -166,22 +167,3 @@
   transition: all ease-in-out 1.2s;
 }
 
-.homeContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-block-start: 10px;
-}
-
-.userText {
-  /* margin-inline: 20px; */
-}
-
-.userContentContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid black;
-  margin: 5px;
-  padding-inline: 10px;
-}
