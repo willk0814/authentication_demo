@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import Login from "./Login/Login";
-import Register from "./Register/Register";
-import HomeScreen from "./LoggedInHome/HomeScreen";
-import { register, login } from "../../services/service";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import HomeScreen from "../LoggedInHome/HomeScreen";
+import { register, login } from "../../../services/service";
+
+import "./Body.css";
 
 export default function Body() {
   const [showLogin, setShowLogin] = useState(true);
@@ -19,15 +21,33 @@ export default function Body() {
     setLoggedIn(false);
   };
 
-  const handleRegsiter = (username, password, auth) => {
-    register(username, password, auth);
-    setLoggedInUser({ user: username, auth: auth });
-    setLoggedIn(true);
+  const handleRegsiter = async (username, password, auth) => {
+    try {
+      let response = await register(username, password, auth);
+      console.log("Response from body", response);
+      if (response.message == "User already exists") {
+        console.log("User already exists");
+      } else {
+        setLoggedInUser({ user: response.user.user, auth: response.user.auth });
+        setLoggedIn(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleLogin = (authStatus, username, auth) => {
-    setLoggedInUser({ user: username, auth: auth });
-    setLoggedIn(authStatus);
+  const handleLogin = async (username, password) => {
+    try {
+      let response = await login(username, password);
+      if (!response.authStatus) {
+        console.log("Incorrect username or password");
+      } else {
+        setLoggedInUser({ user: response.user, auth: response.auth });
+        setLoggedIn(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // useEffect(() => {

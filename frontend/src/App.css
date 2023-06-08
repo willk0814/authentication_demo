@@ -8,71 +8,6 @@
   background-color: beige;
 }
 
-.titleText {
-  font-weight: 350;
-  font-size: 2.5rem;
-}
-
-.headerText {
-  margin-block-end: 7px;
-  font-size: 1.25rem;
-  font-weight: 300;
-}
-
-.headerList {
-  margin-block-start: 0px;
-  margin-block-end: 2rem;
-}
-
-.formContainer {
-  margin-top: 10px;
-  display: flex;
-  border: 3px solid black;
-  border-radius: 10px;
-  justify-content: center;
-  padding-inline: 10px;
-}
-
-.bodyContainer {
-  display: flex;
-  flex-direction: column;
-  width: 90vw;
-}
-
-.bodyButton_selected {
-  font-size: 1.25rem;
-  margin-inline: 5px;
-  border-radius: 10px;
-  color: beige;
-  background-color: black;
-  border: 1px black solid;
-  transition: ease-in-out 0.5s;
-}
-
-.bodyButton {
-  font-size: 1.25rem;
-  margin-inline: 5px;
-  border-radius: 10px;
-  background-color: beige;
-  color: black;
-  border: 1px black solid;
-  transition: ease-in-out 0.5s;
-}
-
-.bodyButton:hover {
-  scale: 1.25;
-  cursor: pointer;
-}
-
-.bodyButton_selected:hover {
-  scale: 1.25;
-  cursor: pointer;
-}
-
-.buttonsContainer{
-  align-self: center;
-}
-
 .inputContainer {
   padding-block: 5px;
   display: flex;
@@ -116,54 +51,5 @@
   cursor: pointer;
 }
 
-.registerRowContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
 
-.divider {
-  width: 3px;
-  height: 95%;
-  background-color: black;
-  border-radius: 10px;
-}
-
-.passStrengthContainer {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.passTitle {
-  margin-block-start: 0px;
-}
-
-.passRequirementsList {
-  padding-inline-start: 10px;
-  margin-block-start: -5px;
-  margin-block-end: 20px;
-}
-
-.passRequirementListItem {
-  /* margin-left: -15px; */
-  padding-block: 0px;
-}
-
-.progressBarContainer {
-  margin-block-start: 0px;
-  width: 95%;
-  height: 3px;
-  background-color: darkgray;
-  border-radius: 10px;
-}
-
-.progressBar {
-  height: 3px;
-  background-color: black;
-  border-radius: 10px;
-  transition: all ease-in-out 1.2s;
-}
 

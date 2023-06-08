@@ -1,0 +1,60 @@
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    align-items: center;
+}
+
+.buttonsContainer {
+    align-self: center;
+}
+
+.bodyButton {
+    font-size: 1.25rem;
+    margin-inline: 5px;
+    border-radius: 10px;
+    background-color: beige;
+    color: black;
+    border: 1px black solid;
+    transition: ease-in-out 0.5s;
+}
+
+.bodyButton:hover {
+    scale: 1.15;
+    cursor: pointer;
+}
+
+.bodyButton_selected {
+    font-size: 1.25rem;
+    margin-inline: 5px;
+    border-radius: 10px;
+    color: beige;
+    background-color: black;
+    border: 1px black solid;
+    transition: ease-in-out 0.5s;
+}
+
+.bodyButton_selected:hover {
+    scale: 1.15;
+    cursor: pointer;
+}
+
+.bodyButton_selected_inactive {
+    font-size: 1.25rem;
+    margin-inline: 5px;
+    border-radius: 10px;
+    color: beige;
+    background-color: gray;
+    border: 1px gray;
+    transition: ease-in-out 0.5s;
+}
+
+.formContainer {
+    margin-top: 10px;
+    display: flex;
+    border: 3px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    padding-inline: 10px;
+    max-width: fit-content;
+}

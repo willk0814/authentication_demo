@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // import mongoose library
 
-const dataSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     user: {
       type: String,
@@ -14,8 +14,9 @@ const dataSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }],
   },
   { collection: "users_2" }
 );
 
-module.exports = mongoose.model("Users", dataSchema);
+module.exports = mongoose.model("Users", userSchema);

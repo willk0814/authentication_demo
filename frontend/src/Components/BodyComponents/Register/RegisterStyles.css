@@ -1,0 +1,75 @@
+.registerRowContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles shared with login screen */
+.formAlignment {
+
+}
+
+.inputContainer {
+
+}
+
+.label {
+
+}
+
+.input {
+
+}
+
+.submitButton {
+
+}
+/* End shared styles */
+
+.divider {
+    width: 3px;
+    height: 95%;
+    background-color: black;
+    border-radius: 10px;
+}
+
+/* Password strength list indicator styles */
+.passStrengthContainer {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.passTitle {
+    margin-block-start: 0px;
+}
+
+.passRequirementsList {
+    padding-inline-start: 10px;
+    margin-block-start: -5px;
+    margin-block-end: 20px;
+}
+
+.passRequirementsListItem {
+    padding-block: 0px;
+}
+
+/* Password strength progress bar */
+.progressBarContainer {
+    margin-block-start: 0px;
+    width: 95%;
+    height: 3px;
+    background-color: darkgray;
+    border-radius: 10px;
+}
+
+.progressBar {
+    height: 3px;
+    background-color: black;
+    border-radius: 10px;
+    transition: all ease-in-out 1.2s;
+}
+
+
