@@ -4,12 +4,12 @@ import { BsPenFill, BSTRas, BsTrash } from "react-icons/bs";
 
 import "./LoggedInStyles.css";
 
-export default function NoteBar({ date, note }) {
+export default function NoteBar({ id, date, content }) {
   const [edited, setEdited] = useState(false);
 
   const [noteObj, setNoteObj] = useState({
-    original: note,
-    updated: note,
+    original: content,
+    updated: content,
   });
 
   const handleChangeText = (e) => {

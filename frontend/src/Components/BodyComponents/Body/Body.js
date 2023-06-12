@@ -10,7 +10,12 @@ import "./Body.css";
 export default function Body() {
   const [showLogin, setShowLogin] = useState(true);
   const [loggedIn, setLoggedIn] = useState(true);
-  const [loggedInUser, setLoggedInUser] = useState({ user: "", auth: false });
+  const [loggedInUser, setLoggedInUser] = useState({
+    user: "",
+    auth: false,
+    id: "",
+    notes: [],
+  });
 
   const toggleShowLogin = (value) => {
     setShowLogin(value);
@@ -28,7 +33,12 @@ export default function Body() {
       if (response.message == "User already exists") {
         console.log("User already exists");
       } else {
-        setLoggedInUser({ user: response.user.user, auth: response.user.auth });
+        setLoggedInUser({
+          user: response.user.user,
+          auth: response.user.auth,
+          id: response.id,
+          notes: [],
+        });
         setLoggedIn(true);
       }
     } catch (error) {
@@ -42,7 +52,12 @@ export default function Body() {
       if (!response.authStatus) {
         console.log("Incorrect username or password");
       } else {
-        setLoggedInUser({ user: response.user, auth: response.auth });
+        setLoggedInUser({
+          user: response.userData.user,
+          auth: response.userData.auth,
+          id: response.userData._id,
+          notes: response.userData.notes,
+        });
         setLoggedIn(response);
       }
     } catch (error) {

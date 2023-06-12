@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-import { getAllUsers, deleteUser } from "../../../services/service";
+import {
+  getAllUsers,
+  deleteUser,
+  getAllNotes,
+} from "../../../services/service";
 import { BsPenFill, BsFillTrashFill } from "react-icons/bs";
 import UserBar from "./UserBar";
 import NoteBar from "./NoteBar";
@@ -22,18 +26,24 @@ export default function HomeScreen({ user, handleLogout }) {
   }
 
   async function handleGetNotes() {
-    console.log("Retrieving user notes");
     setViewAdminOps(false);
     setViewNoteOps(true);
-    // const notesList = await getUserNotes();
-    // console.log(notesList);
-    // setUserNotes(notesList);
+
+    // retrieve and store all of the users notes
+    const notes = await getAllNotes(user.id);
+    setUserNotes(notes);
   }
 
   const removeUser = (id) => {
     console.log(`removing user id with: ${id}`);
     deleteUser(id);
   };
+
+  // date and formatted date for Notebar
+  const date = new Date();
+  const formatted_Date = `${
+    date.getMonth() + 1
+  }/${date.getDate()}/${date.getFullYear()}`;
 
   return (
     <div className="homeContainer">
@@ -88,8 +98,13 @@ export default function HomeScreen({ user, handleLogout }) {
 
       {viewNoteOps && (
         <div className="notesContainer">
-          {/* {userNotes.map((index) => {})} */}
-          <NoteBar date={"10/24/2023"} note={"Walk the dog"} />
+          {/* New Note - this first notebar will allow the creation of a new note*/}
+          <NoteBar date={formatted_Date} content={"Walk the dog"} />
+
+          {/* Mapped Notes */}
+          {userNotes.map(({ id, date, content }, index) => (
+            <NoteBar key={index} id={id} date={date} content={content} />
+          ))}
         </div>
       )}
     </div>

@@ -40,6 +40,7 @@ export async function login(username, password) {
 export async function getAllUsers() {
   try {
     const response = await axios.get("http://localhost:3000/api/users");
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -69,5 +70,46 @@ export async function updateUserAuth(userID, authStatus) {
     console.log(response.data);
   } catch (error) {
     console.log(error);
+  }
+}
+
+// Note Management Services
+// Add a note
+export async function addNote(userID, title, content) {
+  const data = {
+    userID: userID,
+    title: title,
+    content: content,
+  };
+
+  try {
+    const response = await axios.post(
+      `http://localhost:3000/api/addNote`,
+      data
+    );
+    console.log("response, ", response);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+// Remove a note
+
+// View notes -> accepts a user
+export async function getAllNotes(userID) {
+  console.log(`Retrieving notes for user: ${userID}`);
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/api/retrieveAllNotes`,
+      {
+        params: {
+          userID: userID,
+        },
+      }
+    );
+    console.log("response ", response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
   }
 }
