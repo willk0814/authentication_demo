@@ -4,7 +4,7 @@ import { BsPenFill, BSTRas, BsTrash } from "react-icons/bs";
 
 import "./LoggedInStyles.css";
 
-export default function NoteBar({ id, date, content }) {
+export default function NoteBar({ id, date, content, penHandler }) {
   const [edited, setEdited] = useState(false);
 
   const [noteObj, setNoteObj] = useState({
@@ -34,12 +34,16 @@ export default function NoteBar({ id, date, content }) {
         />
       </div>
       <div className="notebarRight">
-        <BsPenFill
-          color="beige"
-          className="editedIcon"
-          style={{ display: edited ? "" : "none" }}
-        />
-        <BsTrash color="beige" style={{ paddingInline: "8px" }} />
+        <div className="editedIcon">
+          <BsPenFill
+            color="beige"
+            style={{ display: edited ? "" : "none" }}
+            onClick={penHandler}
+          />
+        </div>
+        <div className="trashIcon">
+          <BsTrash color="beige" style={{ paddingInline: "8px" }} />
+        </div>
       </div>
     </div>
   );

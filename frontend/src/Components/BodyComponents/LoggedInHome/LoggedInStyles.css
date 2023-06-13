@@ -103,3 +103,28 @@
     color: beige;
     font-size: medium;
   }
+
+  .editedIcon {
+    margin-inline: 2px;
+    padding: 2px;
+    transition: ease-in-out 2s;
+  }
+
+  .editedIcon:hover {
+    cursor: pointer;
+  }
+
+  .trashIcon {
+    margin-inline: 2px;
+    padding: 2px;
+    transition: ease-in-out all 2s
+  }
+
+  .trashIcon:hover {
+    cursor: pointer;
+  }
+
+  .notebarRight {
+    display: flex;
+    flex-direction: row;
+  }

@@ -4,6 +4,7 @@ import {
   getAllUsers,
   deleteUser,
   getAllNotes,
+  addNote,
 } from "../../../services/service";
 import { BsPenFill, BsFillTrashFill } from "react-icons/bs";
 import UserBar from "./UserBar";
@@ -34,6 +35,15 @@ export default function HomeScreen({ user, handleLogout }) {
     setUserNotes(notes);
   }
 
+  async function handleCreateNewNote(date, content) {
+    console.log(`Creating new note with: {
+      user: ${user.id},
+      date: ${date}
+      content: ${content}
+    }`);
+    const response = addNote(user.id, date, content);
+  }
+
   const removeUser = (id) => {
     console.log(`removing user id with: ${id}`);
     deleteUser(id);
@@ -41,6 +51,7 @@ export default function HomeScreen({ user, handleLogout }) {
 
   // date and formatted date for Notebar
   const date = new Date();
+  const EST = date.toLocaleString("en-US", { timeZone: "America/New_York" });
   const formatted_Date = `${
     date.getMonth() + 1
   }/${date.getDate()}/${date.getFullYear()}`;
@@ -99,7 +110,7 @@ export default function HomeScreen({ user, handleLogout }) {
       {viewNoteOps && (
         <div className="notesContainer">
           {/* New Note - this first notebar will allow the creation of a new note*/}
-          <NoteBar date={formatted_Date} content={"Walk the dog"} />
+          <NoteBar date={EST} content={""} />
 
           {/* Mapped Notes */}
           {userNotes.map(({ id, date, content }, index) => (

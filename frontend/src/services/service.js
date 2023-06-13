@@ -75,10 +75,10 @@ export async function updateUserAuth(userID, authStatus) {
 
 // Note Management Services
 // Add a note
-export async function addNote(userID, title, content) {
+export async function addNote(userID, date, content) {
   const data = {
     userID: userID,
-    title: title,
+    date: date,
     content: content,
   };
 
