@@ -5,6 +5,7 @@ import {
   deleteUser,
   getAllNotes,
   addNote,
+  deleteNote,
 } from "../../../services/service";
 import { BsPenFill, BsFillTrashFill } from "react-icons/bs";
 import UserBar from "./UserBar";
@@ -18,6 +19,7 @@ export default function HomeScreen({ user, handleLogout }) {
   const [viewNoteOps, setViewNoteOps] = useState(false);
   const [userNotes, setUserNotes] = useState([]);
 
+  // Admin operation functions - view all users
   async function handleGetUsers() {
     setViewNoteOps(false);
     setViewAdminOps(true);
@@ -26,35 +28,44 @@ export default function HomeScreen({ user, handleLogout }) {
     setUsers(userList);
   }
 
+  // Admin operation functions - remove user
+  const removeUser = (id) => {
+    console.log(`removing user id with: ${id}`);
+    deleteUser(id);
+  };
+
+  // Note taking operations
   async function handleGetNotes() {
     setViewAdminOps(false);
     setViewNoteOps(true);
 
     // retrieve and store all of the users notes
     const notes = await getAllNotes(user.id);
+    console.log(notes);
     setUserNotes(notes);
   }
 
+  // Create new note
   async function handleCreateNewNote(date, content) {
-    console.log(`Creating new note with: {
-      user: ${user.id},
-      date: ${date}
-      content: ${content}
-    }`);
     const response = addNote(user.id, date, content);
   }
 
-  const removeUser = (id) => {
-    console.log(`removing user id with: ${id}`);
-    deleteUser(id);
-  };
+  // Delete note
+  async function handleDeleteNote(noteID) {
+    console.log(`Deleting note from user: ${user.id} with id: ${noteID}`);
+    const response = await deleteNote(user.id, noteID);
+    console.log(response);
+  }
 
-  // date and formatted date for Notebar
-  const date = new Date();
-  const EST = date.toLocaleString("en-US", { timeZone: "America/New_York" });
-  const formatted_Date = `${
-    date.getMonth() + 1
-  }/${date.getDate()}/${date.getFullYear()}`;
+  async function handleUpdateNote(noteID, content, date) {
+    console.log(`updating note with: ${noteID} and new content:${content}`);
+  }
+
+  // formatted date for notebar
+  const current_date = new Date().toLocaleString("en-US", {
+    dateStyle: "short",
+    timeStyle: "short",
+  });
 
   return (
     <div className="homeContainer">
@@ -110,11 +121,25 @@ export default function HomeScreen({ user, handleLogout }) {
       {viewNoteOps && (
         <div className="notesContainer">
           {/* New Note - this first notebar will allow the creation of a new note*/}
-          <NoteBar date={EST} content={""} />
+          <NoteBar
+            date={current_date}
+            content={""}
+            penHandler={handleCreateNewNote}
+          />
 
           {/* Mapped Notes */}
-          {userNotes.map(({ id, date, content }, index) => (
-            <NoteBar key={index} id={id} date={date} content={content} />
+          {userNotes.map((note, index) => (
+            <NoteBar
+              key={index}
+              id={note._id}
+              date={new Date(note.date).toLocaleString("en-US", {
+                dateStyle: "short",
+                timeStyle: "short",
+              })}
+              content={note.content}
+              penHandler={handleUpdateNote}
+              trashCanHandler={handleDeleteNote}
+            />
           ))}
         </div>
       )}

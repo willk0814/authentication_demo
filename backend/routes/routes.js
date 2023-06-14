@@ -181,7 +181,7 @@ router.delete("/deleteNote", async (req, res) => {
     // remove the note from the note collection
     const deleted_note = await Note.findByIdAndDelete(note_id);
 
-    res.status(200).json(user, deleted_note);
+    res.status(200).json(deleted_note);
   } catch (error) {
     res.status(400).json(error.message);
   }

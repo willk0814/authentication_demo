@@ -94,6 +94,22 @@ export async function addNote(userID, date, content) {
 }
 
 // Remove a note
+export async function deleteNote(userID, noteID) {
+  console.log(`Deleting note from user: ${userID} with id: ${noteID}`);
+  const data = {
+    userID: userID,
+    noteID: noteID,
+  };
+  try {
+    const response = await axios.delete(
+      "http://localhost:3000/api/deleteNote",
+      { data: data }
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 // View notes -> accepts a user
 export async function getAllNotes(userID) {
