@@ -6,10 +6,12 @@ import {
   getAllNotes,
   addNote,
   deleteNote,
+  updateNote,
 } from "../../../services/service";
 import { BsPenFill, BsFillTrashFill } from "react-icons/bs";
 import UserBar from "./UserBar";
 import NoteBar from "./NoteBar";
+import NewNoteBar from "./NewNoteBar";
 
 import "./LoggedInStyles.css";
 
@@ -59,6 +61,8 @@ export default function HomeScreen({ user, handleLogout }) {
 
   async function handleUpdateNote(noteID, content, date) {
     console.log(`updating note with: ${noteID} and new content:${content}`);
+    const response = await updateNote(noteID, content);
+    console.log(response);
   }
 
   // formatted date for notebar
@@ -121,7 +125,7 @@ export default function HomeScreen({ user, handleLogout }) {
       {viewNoteOps && (
         <div className="notesContainer">
           {/* New Note - this first notebar will allow the creation of a new note*/}
-          <NoteBar
+          <NewNoteBar
             date={current_date}
             content={""}
             penHandler={handleCreateNewNote}

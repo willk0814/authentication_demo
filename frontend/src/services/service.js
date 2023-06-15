@@ -129,3 +129,21 @@ export async function getAllNotes(userID) {
     console.log(error.message);
   }
 }
+
+// Update an existing notes
+export async function updateNote(noteID, content) {
+  console.log(`Updating note:${noteID} with content:${content}`);
+  const data = {
+    noteID: noteID,
+    content: content,
+  };
+  try {
+    const response = await axios.post(`http://localhost:3000/api/updateNote`, {
+      data: data,
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}

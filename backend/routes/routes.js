@@ -186,3 +186,24 @@ router.delete("/deleteNote", async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
+// update an existing note
+router.post("/updateNote", async (req, res) => {
+  console.log(
+    `Updating noteID: ${req.body.data.noteID} and new content: ${req.body.data.content}`
+  );
+  try {
+    const note_id = req.body.data.noteID;
+    // const content = req.body.content;
+
+    const note = await Note.findByIdAndUpdate(
+      note_id,
+      { $set: { content: req.body.data.content } },
+      { new: true }
+    );
+
+    res.status(200).json(note);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
