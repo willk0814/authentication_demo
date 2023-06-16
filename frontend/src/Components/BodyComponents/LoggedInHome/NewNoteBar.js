@@ -4,27 +4,22 @@ import { BsPenFill, BSTRas, BsTrash } from "react-icons/bs";
 
 import "./LoggedInStyles.css";
 
-export default function NewNoteBar({
-  id,
-  date,
-  content,
-  penHandler,
-  trashCanHandler,
-}) {
-  const [edited, setEdited] = useState(false);
-  const [noteObj, setNoteObj] = useState({
-    original: content,
-    updated: content,
-  });
+export default function NewNoteBar({ id, date, penHandler, trashCanHandler }) {
+  const [noteContent, setNoteContent] = useState("");
 
-  const handleChangeText = (e) => {
-    setNoteObj({ original: noteObj.original, updated: e.target.value });
-    if (e.target.value != noteObj.original) {
-      setEdited(true);
-    } else {
-      setEdited(false);
-    }
+  const createNewNote = () => {
+    penHandler(date, noteContent);
+    setNoteContent("");
   };
+
+  // const handleChangeText = (e) => {
+  //   setNoteObj({ original: noteObj.original, updated: e.target.value });
+  //   if (e.target.value != noteObj.original) {
+  //     setEdited(true);
+  //   } else {
+  //     setEdited(false);
+  //   }
+  // };
 
   return (
     <div className="notebarContainer">
@@ -33,16 +28,19 @@ export default function NewNoteBar({
         <div className="notebarDivider"> </div>
         <input
           className="noteInput"
-          value={noteObj.updated}
-          onChange={handleChangeText}
+          value={noteContent}
+          onChange={(e) => setNoteContent(e.target.value)}
         />
       </div>
       <div className="notebarRight">
         <div className="editedIcon">
           <BsPenFill
             color="beige"
-            style={{ display: edited ? "" : "none", paddingInline: "8px" }}
-            onClick={() => penHandler(date, noteObj.updated)}
+            style={{
+              display: noteContent !== "" ? "" : "none",
+              paddingInline: "8px",
+            }}
+            onClick={() => createNewNote()}
           />
         </div>
         {/* <div className="trashIcon">

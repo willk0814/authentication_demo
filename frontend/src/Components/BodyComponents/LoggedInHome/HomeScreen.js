@@ -65,7 +65,19 @@ export default function HomeScreen({ user, handleLogout }) {
   async function handleUpdateNote(noteID, content, date) {
     const response = await updateNote(noteID, content);
 
-    // update rendnered notes
+    setUserNotes((prevUserNotes) =>
+      prevUserNotes.map((note) => {
+        if (note._id === noteID) {
+          // Update the content of the matching note
+          return {
+            ...note,
+            content: content,
+          };
+        }
+        return note; // Return the unchanged note for other notes in the array
+      })
+    );
+    // update rendered notes
   }
 
   // formatted date for notebar
@@ -128,11 +140,7 @@ export default function HomeScreen({ user, handleLogout }) {
       {viewNoteOps && (
         <div className="notesContainer">
           {/* New Note - this first notebar will allow the creation of a new note*/}
-          <NewNoteBar
-            date={current_date}
-            content={""}
-            penHandler={handleCreateNewNote}
-          />
+          <NewNoteBar date={current_date} penHandler={handleCreateNewNote} />
 
           {/* Mapped Notes */}
           {userNotes.map((note, index) => (
