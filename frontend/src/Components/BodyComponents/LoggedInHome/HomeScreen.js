@@ -26,15 +26,14 @@ export default function HomeScreen({ user, handleLogout }) {
     setViewNoteOps(false);
     setViewAdminOps(true);
     const userList = await getAllUsers();
-    console.log(userList);
+
     setUsers(userList);
   }
 
   // Admin operation functions - remove user
-  const removeUser = (id) => {
-    console.log(`removing user id with: ${id}`);
-    deleteUser(id);
-  };
+  async function removeUser(id) {
+    const response = await deleteUser(id);
+  }
 
   // Note taking operations
   async function handleGetNotes() {
@@ -43,26 +42,30 @@ export default function HomeScreen({ user, handleLogout }) {
 
     // retrieve and store all of the users notes
     const notes = await getAllNotes(user.id);
-    console.log(notes);
     setUserNotes(notes);
   }
 
   // Create new note
   async function handleCreateNewNote(date, content) {
-    const response = addNote(user.id, date, content);
+    const response = await addNote(user.id, date, content);
+    setUserNotes((prevUserNotes) => [...prevUserNotes, response]);
   }
 
   // Delete note
   async function handleDeleteNote(noteID) {
     console.log(`Deleting note from user: ${user.id} with id: ${noteID}`);
     const response = await deleteNote(user.id, noteID);
-    console.log(response);
+
+    // update rendered notes
+    setUserNotes((prevUserNotes) =>
+      prevUserNotes.filter((note) => note._id !== response._id)
+    );
   }
 
   async function handleUpdateNote(noteID, content, date) {
-    console.log(`updating note with: ${noteID} and new content:${content}`);
     const response = await updateNote(noteID, content);
-    console.log(response);
+
+    // update rendnered notes
   }
 
   // formatted date for notebar
@@ -134,7 +137,7 @@ export default function HomeScreen({ user, handleLogout }) {
           {/* Mapped Notes */}
           {userNotes.map((note, index) => (
             <NoteBar
-              key={index}
+              key={note._id}
               id={note._id}
               date={new Date(note.date).toLocaleString("en-US", {
                 dateStyle: "short",

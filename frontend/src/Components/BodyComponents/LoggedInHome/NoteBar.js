@@ -26,8 +26,6 @@ export default function NoteBar({
     }
   };
 
-  const handleSubmitChange = () => {};
-
   return (
     <div className="notebarContainer">
       <div className="notebarLeft">

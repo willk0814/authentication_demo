@@ -88,6 +88,7 @@ export async function addNote(userID, date, content) {
       data
     );
     console.log("response, ", response);
+    return response.data;
   } catch (error) {
     console.log(error.message);
   }
@@ -106,6 +107,7 @@ export async function deleteNote(userID, noteID) {
       { data: data }
     );
     console.log(response.data);
+    return response.data;
   } catch (error) {
     console.log(error.message);
   }

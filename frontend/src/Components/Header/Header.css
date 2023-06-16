@@ -1,5 +1,8 @@
-headerContainer {
-
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline-end: 10vw;
 }
 
 .titleText {
@@ -16,8 +19,4 @@ headerContainer {
 .headerList {
     margin-block-start: 0px;
     margin-block-end: 2rem;
-}
-
-headerListItem {
-
 }
